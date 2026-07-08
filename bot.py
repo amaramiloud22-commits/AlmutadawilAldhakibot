@@ -30,7 +30,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "اختر أحد الخيارات التالية:",
         reply_markup=reply_markup,
     )
-  async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+
+async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
 
@@ -78,8 +80,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         text = "حدث خطأ."
 
-    await query.message.reply_text(text, reply_markup=reply_markup)
-    def main():
+    await query.message.reply_text(
+        text,
+        reply_markup=reply_markup,
+    )
+
+
+def main():
     app = Application.builder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
